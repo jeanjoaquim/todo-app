@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import TodoContext from './context/TodoContext';
 import NightIcon from './images/icon-moon.svg';
 import DayIcon from './images/icon-sun.svg'
 import BgDay from './images/bg-desktop-light.jpg';
@@ -10,16 +11,17 @@ import './styles.css';
 
 function App() {
 
-    const [NightMode, setNightMode] = useState(false);
+    const {NightMode} = useContext(TodoContext);
 
     return(
-        <div class='container'>
+        <div className='container'>
+            <div className={`teste ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div>
             <img src={NightMode ? BgNight : BgDay} className='background-image night-mode-transition' alt='' />
-            <Header nightMode={NightMode} nightIcon={NightIcon} dayIcon={DayIcon} />
+            <Header nightIcon={NightIcon} dayIcon={DayIcon} />
 
             <main>
-                <Form nightMode={NightMode} />
-                <TodoList nightMode={NightMode} />
+                <Form />
+                <TodoList />
                 <footer>
                     <p>Drag and drop to reorder list</p>
                 </footer>
