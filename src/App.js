@@ -16,7 +16,8 @@ function App() {
     return(
         <div className='container'>
             <div className={`teste ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div>
-            <img src={NightMode ? BgNight : BgDay} className='background-image night-mode-transition' alt='' />
+            {/* <img src={NightMode ? BgNight : BgDay} className='background-image night-mode-transition' alt='' /> */}
+            <div className='background-image night-mode-transition' style={{backgroundImage: `${NightMode ? `url(${BgNight})` : `url(${BgDay})`}` }} />
             <Header nightIcon={NightIcon} dayIcon={DayIcon} />
 
             <main>

@@ -20,6 +20,7 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+    transition: all 5s ease;
 }
 
 .container {
@@ -194,16 +195,19 @@ footer {
     background-color: #25273C;
     color: #CCCEE7;
     border-color: #383A4F;
+    transition: all .5s ease;
 }
 
 .night-mode-active-darker {
     background-color: #181824;
+    transition: all .5s ease;
 }
 
 .night-mode-disabled {
     background-color: #FFFFFF;
     color: #464646;
     border-color: #EDEDED;
+    transition: all .5s ease;
 }
 
 .teste {
