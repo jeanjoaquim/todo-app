@@ -7,6 +7,30 @@ export const TodoProvider = ({ children }) => {
 
     const [NightMode, setNightMode] = useState(false);
     const [todoData, setTodoData] = useState(TodoData);
+    const [itemsLeft, setItemsLeft] = useState(todoData.length);
+
+    useEffect(() => {
+        howMany();
+    }, [])
+
+    const howMany = () => {
+        let cont = 0;
+        todoData.forEach((item) => {
+            if(item.status === 'completed') {
+                cont++;
+            }
+        })
+        console.log(todoData);
+        setItemsLeft(todoData.length - cont);
+    }
+
+    const clearItems = () => {
+        setTodoData(
+            todoData.filter((item) => (
+                item.status !== 'completed'
+            ))
+        )
+    }
 
     const toggleNightMode = () => {
         if(NightMode === false) {
@@ -21,7 +45,6 @@ export const TodoProvider = ({ children }) => {
     }
 
     const deleteItem = (id) => {
-        console.log(id);
         setTodoData(
             todoData.filter((item) => (
                 item.id !== id
@@ -34,6 +57,9 @@ export const TodoProvider = ({ children }) => {
             value={{
                 NightMode,
                 todoData,
+                itemsLeft,
+                howMany,
+                clearItems,
                 toggleNightMode,
                 addTodo,
                 deleteItem

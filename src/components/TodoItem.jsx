@@ -1,24 +1,35 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import TodoContext from '../context/TodoContext';
 import DeleteIcon from '../images/icon-cross.svg';
 
 function TodoItem({ item }) {
 
-    const {deleteItem, NightMode} = useContext(TodoContext);
+    const {howMany, deleteItem, NightMode} = useContext(TodoContext);
     const [check, setCheck] = useState(false);
 
-    const teste = (e) => {
-        if(e.target.checked) {
+    useEffect(() => {
+        if(item.status === 'completed') {
             setCheck(true);
-        } else {
+        } else if (item.status === 'active') {
             setCheck(false);
         }
+    }, [])
+
+    const handledCheckedItems = (e) => {
+        if(e.target.checked === true) {
+            setCheck(true);
+            item.status = 'completed';
+        } else {
+            setCheck(false);
+            item.status = 'active';
+        }
+        howMany();
     }
 
     return(
         <li draggable='true' className={`todo-item ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`}>
             <label className={`custom-checkbox ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`}>
-                <input onClick={teste} type='checkbox' className='checkbox'/>
+                <input checked={check} onClick={handledCheckedItems} type='checkbox' className='checkbox'/>
                 <div className="custom-checkmark"></div>
                 <div className={`custom-checkmark-background ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`}></div>
             </label>

@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 
 function TodoList() {
 
-    const {todoData, NightMode} = useContext(TodoContext);
+    const {clearItems, itemsLeft, todoData, NightMode} = useContext(TodoContext);
 
     return(
         <section>
@@ -17,13 +17,13 @@ function TodoList() {
                     }
                 </div>
                 <li className={`todo-footer ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`} >
-                    <p><span className='total-items'></span>{todoData.length} Items left</p>
+                    <p><span className='total-items'></span>{itemsLeft} Items left</p>
                     <nav className='filter'>
                         <a className='all selected'>All</a>
                         <a className='active'>Active</a>
                         <a className='complete'>Complete</a>
                     </nav>
-                    <p className="clear-items">Clear Completed</p>
+                    <p onClick={clearItems} className="clear-items">Clear Completed</p>
                 </li>
             </ul>
         </section>
