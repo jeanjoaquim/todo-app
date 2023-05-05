@@ -20,7 +20,6 @@ export const TodoProvider = ({ children }) => {
                 cont++;
             }
         })
-        console.log(todoData);
         setItemsLeft(todoData.length - cont);
     }
 
