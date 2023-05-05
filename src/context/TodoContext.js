@@ -58,6 +58,7 @@ export const TodoProvider = ({ children }) => {
                 todoData,
                 itemsLeft,
                 howMany,
+                setTodoData,
                 clearItems,
                 toggleNightMode,
                 addTodo,
