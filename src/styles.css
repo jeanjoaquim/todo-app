@@ -171,6 +171,8 @@ footer {
 
 .filter {
     font-weight: bold;
+    list-style: none;
+    display: flex;
 }
 
 .all, .active, .complete {

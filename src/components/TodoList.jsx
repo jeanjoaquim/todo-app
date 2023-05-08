@@ -3,10 +3,45 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TodoContext from '../context/TodoContext';
 import TodoItem from './TodoItem';
 
+function FooterListItem(props) {
+    const { item, active, onClick } = props;
+
+    return(
+        <li
+            className={`${item} ${active ? 'selected' : ''}`}
+            onClick={() => onClick(item)}
+        >
+            {item}
+        </li>
+    )
+}
+
 function TodoList() {
 
     const {clearItems, itemsLeft, todoData, setTodoData, NightMode} = useContext(TodoContext);
     const [fillList, setFillList] = useState(todoData);
+    const [activeItem, setActiveItem] = useState(null);
+
+    const handleItemClick = (item) => {
+        if(item === 'active') {
+            setFillList(
+                todoData.filter((item) => (
+                    item.status === 'active'
+                ))
+            )
+
+        } else if(item === 'complete') {
+            setFillList(
+                todoData.filter((item) => (
+                    item.status === 'completed'
+                ))
+            )
+        } else {
+            setFillList(todoData)
+        }
+        setActiveItem(item);
+        console.log(item);
+      }
 
     const handleDragEnd = ({destination, source}) => {
         if(!destination) return;
@@ -26,13 +61,14 @@ function TodoList() {
         setFillList(todoData);
     }, [todoData])
 
-    const handleListContent = (e) => {
+    const handleListContent = (e, item) => {
         if(e.target.className === 'active') {
             setFillList(
                 todoData.filter((item) => (
                     item.status === 'active'
                 ))
             )
+
         } else if(e.target.className === 'complete') {
             setFillList(
                 todoData.filter((item) => (
@@ -42,6 +78,8 @@ function TodoList() {
         } else {
             setFillList(todoData)
         }
+        setActiveItem(e);
+        console.log(item);
     }
 
     return(
@@ -84,11 +122,23 @@ function TodoList() {
                 </div> */}
                 <li className={`todo-footer ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`} >
                     <p><span className='total-items'></span>{itemsLeft} Items left</p>
-                    <nav className='filter'>
-                        <a onClick={handleListContent} className='all selected'>All</a>
-                        <a onClick={handleListContent} className='active'>Active</a>
-                        <a onClick={handleListContent} className='complete'>Complete</a>
-                    </nav>
+                    <ul className='filter'>
+                    <FooterListItem
+                        item="all"
+                        active={activeItem === "all"}
+                        onClick={handleItemClick}
+                    />
+                    <FooterListItem
+                        item="active"
+                        active={activeItem === "active"}
+                        onClick={handleItemClick}
+                    />
+                    <FooterListItem
+                        item="complete"
+                        active={activeItem === "complete"}
+                        onClick={handleItemClick}
+                    />
+                    </ul>
                     <p onClick={clearItems} className="clear-items">Clear Completed</p>
                 </li>
             </ul>
