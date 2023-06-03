@@ -1,33 +1,13 @@
 import { useContext, useState } from 'react';
 import TodoContext from "../context/TodoContext";
 
-function Form({ nightMode }) {
+function Form() {
 
-    const {NightMode, addTodo} = useContext(TodoContext);
+    const {NightMode, addTodo, todoData} = useContext(TodoContext);
     const [message, setMessage] = useState('');
     const [todoText, setTodoText] = useState('');
 
-    // const TextChange = (e) => {
-    //     setTodoText(e.target.value);
-    //     if(todoText.length <= 10) {
-    //         setMessage('An item should be at least 10 characters');
-    //     } else {
-    //         setMessage(null);
-    //     }
-
-    // }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const newTodo = {
-    //         description: todoText
-    //     }
-    //     if(todoText.trim().length > 10) {
-    //         addTodo(newTodo);
-    //     }
-    //     setTodoText('tete');
-    // }
-
+    //Check if the new todo has at least 10 characters
     const TextChange = (e) => {
         if(todoText === '') {
             setMessage(null);
@@ -40,12 +20,14 @@ function Form({ nightMode }) {
         setTodoText(e.target.value);
     }
 
+    //Add new todo
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        //Double check if there's more than 10 characters
         if(todoText.trim().length > 10) {
             const newTodo = {
-                id: 5,
+                id: todoData.length + 1,
                 description: todoText,
                 status: 'active'
             }
@@ -57,7 +39,7 @@ function Form({ nightMode }) {
     return(
         <form onSubmit={handleSubmit} >
             <input onChange={TextChange} value={todoText} placeholder='Type a new todo...' type='text' className={`todo-input ${NightMode ? 'night-mode-active' : 'night-mode-disabled'}`} />
-            {message && <p>{message}</p>}
+            {message && <p style={{color:'#cccee7', marginTop: '.5rem'}}>{message}</p>}
         </form>
     );
 }

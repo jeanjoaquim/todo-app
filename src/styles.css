@@ -13,7 +13,7 @@ body {
     color: #464646;
 }
 
-.background-image {
+.bg-image {
     background-repeat: no-repeat;
     position: absolute;
     width: 100vw;
@@ -21,7 +21,7 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
-    transition: all 5s ease;
+    transition: all .5s ease;
 }
 
 .container {
@@ -42,6 +42,14 @@ header {
     align-items: center;
 }
 
+.background-day {
+    background-image: url('./images/bg-desktop-light.jpg');
+}
+
+.background-night {
+    background-image: url('./images/bg-desktop-dark.jpg');
+}
+
 .todo-title {
     text-transform: uppercase;
     color: #FFFFFF;
@@ -58,10 +66,6 @@ header {
     cursor: pointer;
 }
 
-.night-mode-transition {
-    transition: all .5s ease;
-}
-
 .todo-input {
     width: 100%;
     height: 50px;
@@ -71,6 +75,7 @@ header {
     font-size: 1rem;
     color: #464646;
     padding: 0 2.5rem;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .todo-list {
@@ -169,7 +174,11 @@ footer {
     font-size: .8rem;
 }
 
-.filter {
+.mobile-filter {
+    display: none;
+}
+
+.desktop-filter {
     font-weight: bold;
     list-style: none;
     display: flex;
@@ -213,9 +222,75 @@ footer {
     transition: all .5s ease;
 }
 
-.teste {
+.bg-color {
     position: absolute;
     z-index: -2;
     width: 100vw;
     height: 100vh;
+}
+
+@media (max-width: 600px) {
+    
+    .container {
+        width: 100%;
+        padding: 0 5%;
+    }
+
+    header, main, footer {
+        width: 100%;
+    }
+
+    .todo-input {
+        width: 100%;
+    }
+
+    .desktop-filter {
+        display: none;
+    }
+
+    .mobile-filter {
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 3px;
+        margin: 1.5rem 0;
+        box-shadow: 0px 10px 50px rgba(0,0,0,.2);
+        justify-content: center;
+        text-transform: capitalize;
+        gap: .5rem;
+    }
+
+    .custom-checkbox {
+        background-image: linear-gradient(#47DAFF, #C058F3);
+    }
+
+    .delete-icon {
+        opacity: 1;
+    }
+
+    .background-day,
+    .background-night {
+        height: 13rem;
+    }
+
+    .background-night {
+        background-image: url('./images/bg-mobile-dark.jpg');
+    }
+
+    .background-day {
+        background-image: url('./images/bg-mobile-light.jpg');
+    }
+
+    .todo-title {
+        font-size: 1.5rem;
+        letter-spacing: .5rem;
+    }
+
+    .night-mode {
+        width: 20px;
+        height: 20px;
+    }
+
 }

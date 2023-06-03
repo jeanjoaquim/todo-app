@@ -1,9 +1,5 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import TodoContext from './context/TodoContext';
-import NightIcon from './images/icon-moon.svg';
-import DayIcon from './images/icon-sun.svg'
-import BgDay from './images/bg-desktop-light.jpg';
-import BgNight from './images/bg-desktop-dark.jpg';
 import Header from './components/Header';
 import Form from './components/Form';
 import TodoList from './components/TodoList';
@@ -15,10 +11,10 @@ function App() {
 
     return(
         <div className='container'>
-            <div className={`teste ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div>
-            {/* <img src={NightMode ? BgNight : BgDay} className='background-image night-mode-transition' alt='' /> */}
-            <div className='background-image night-mode-transition' style={{backgroundImage: `${NightMode ? `url(${BgNight})` : `url(${BgDay})`}` }} />
-            <Header nightIcon={NightIcon} dayIcon={DayIcon} />
+            <div className={`bg-color ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div>
+            <div className={`bg-image ${NightMode ? 'background-night' : 'background-day'}`} />
+
+            <Header />
 
             <main>
                 <Form />
