@@ -23,13 +23,15 @@ export const TodoProvider = ({ children }) => {
 
         let cont = 0;
 
-        data.forEach(obj => {
-            if(obj.status === 'completed') {
-                cont++;
-            }
-        })
-        setItemsLeft(data.length - cont);
-        setTodoData(data);
+        if(data) {
+            data.forEach(obj => {
+                if(obj.status === 'completed') {
+                    cont++;
+                }
+            })
+            setItemsLeft(data.length - cont);
+            setTodoData(data);
+        }
     }
 
     //Count how many items left
