@@ -1,10 +1,11 @@
 import React from 'react';
+import { TodoProvider } from './context/TodoContext';
 import ReactDOM from 'react-dom';
 import Test from './Test';
 
 
 ReactDOM.render(
-    <React.StrictMode>
+    <TodoProvider>
         <Test />
-    </React.StrictMode>
+    </TodoProvider>
 , document.getElementById('root'));
