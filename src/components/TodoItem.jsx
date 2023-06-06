@@ -14,7 +14,7 @@ function TodoItem({ item }) {
         } else if (item.status === 'active') {
             setCheck(false);
         }
-    }, [])
+    }, [item.status])
 
     //Update if the todo is active or not
     const handleCheckedItems = (e) => {
