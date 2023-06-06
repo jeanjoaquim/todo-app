@@ -182,6 +182,7 @@ footer {
     font-weight: bold;
     list-style: none;
     display: flex;
+    text-transform: capitalize;
 }
 
 .all, .active, .complete {
