@@ -230,6 +230,18 @@ footer {
     height: 100vh;
 }
 
+@media (max-width: 375px) {
+
+    .background-night {
+        background-image: url('./images/bg-mobile-dark.jpg');
+    }
+
+    .background-day {
+        background-image: url('./images/bg-mobile-light.jpg');
+    }
+    
+}
+
 @media (max-width: 600px) {
     
     .container {
@@ -274,14 +286,6 @@ footer {
     .background-day,
     .background-night {
         height: 13rem;
-    }
-
-    .background-night {
-        background-image: url('./images/bg-mobile-dark.jpg');
-    }
-
-    .background-day {
-        background-image: url('./images/bg-mobile-light.jpg');
     }
 
     .todo-title {
