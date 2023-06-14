@@ -10,8 +10,8 @@ function App() {
     const {NightMode} = useContext(TodoContext);
 
     return(
-        <div className='container'>
-            <div className={`bg-color ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div>
+        <div className={`container ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}>
+            {/* <div className={`bg-color ${NightMode ? 'night-mode-active-darker' : 'night-mode-disabled'}`}></div> */}
             <div className={`bg-image ${NightMode ? 'background-night' : 'background-day'}`} />
 
             <Header />
